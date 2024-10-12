@@ -1,9 +1,9 @@
 resource "aws_vpc_peering_connection" "peering" {
 
- count = var.is_peering_requried ? 1 : 0
-   vpc_id        = aws_vpc.main.id #requestor
+  count = var.is_peering_requried ? 1 : 0  #this module will not run if is_peering_requried = False
+  vpc_id        = aws_vpc.main.id #requestor(expense-dev-vpc)
  # peer_owner_id = var.peer_owner_id  #optional
-  peer_vpc_id   = data.aws_vpc.default.id  #acceptor
+  peer_vpc_id   = data.aws_vpc.default.id  #acceptor(default-vpc)
  
   auto_accept   = true
 
